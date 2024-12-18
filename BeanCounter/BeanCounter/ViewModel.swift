@@ -14,6 +14,8 @@ struct Child: Codable, Identifiable {
 class ViewModel: ObservableObject {
     var id: Int = 0
     var timer = Timer()
+    let userDefault = UserDefaults.standard
+    
     
     @Published var settings: Settings = Settings()
     @Published var children: [Child] = []
@@ -21,8 +23,33 @@ class ViewModel: ObservableObject {
     
     
     init() {
+        load()
         viewDidLoad()
     }
+    
+    func persist() {
+        do {
+            let data = try JSONEncoder().encode(children)
+            userDefault.set(data, forKey: "children")
+            print("Persisted data")
+        } catch {
+            print("Failed to save Data: \(error)")
+        }
+    }
+
+    func load() {
+        if let data = userDefault.data(forKey: "children") {
+            do {
+                children = try JSONDecoder().decode([Child].self, from: data)
+            } catch {
+                print("Failed to decode Data: \(error)")
+            }
+            print(children)
+        } else {
+            print("Failed to get Data")
+        }
+    }
+
     
     func viewDidLoad() {
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
@@ -33,6 +60,7 @@ class ViewModel: ObservableObject {
     func addChild(_ name: String) {
         children.append(Child(id: id, name: name))
         id += 1
+        persist()
     }
 
     func startAllTimers() {
@@ -63,18 +91,21 @@ class ViewModel: ObservableObject {
     func removeChild(_ child: Child) {
         if let index = children.firstIndex(where: { $0.id == child.id }) {
             children.remove(at: index)
+            persist()
         }
     }
     
     func startTimer(_ index: Int) {
         children[index].isRunning = true
         children[index].startDate = Date()
+        persist()
     }
     
     func stopTimer(_ index: Int) {
         children[index].isRunning = false
         if (children[index].secondsAlreadyPassed > 0) {
             children[index].hasBeenStoppedRecently = true
+            persist()
         }
     }
     
@@ -83,6 +114,7 @@ class ViewModel: ObservableObject {
             stopTimer(index)
             children[index].startDate = nil
             children[index].totalBeansToPay = 0
+            persist()
         }
     }
     
