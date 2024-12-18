@@ -14,34 +14,14 @@ struct Child: Codable, Identifiable {
 class ViewModel: ObservableObject {
     var id: Int = 0
     var timer = Timer()
-    var beanStorage: BeanStorage
     
     @Published var settings: Settings = Settings()
     @Published var children: [Child] = []
     
     
     
-    init(beanStorage: BeanStorage) {
-        self.beanStorage = beanStorage
+    init() {
         viewDidLoad()
-    }
-    
-    
-    func saveData() async {
-        do {
-            try await beanStorage.save(toSaveChildren: children)
-        } catch {
-            print("Failed to persist data: \(error)")
-        }
-    }
-    
-    func loadData() async {
-        do {
-            try await beanStorage.load()
-            children = await beanStorage.children
-        } catch {
-            print("Failed to load data: \(error)")
-        }
     }
     
     func viewDidLoad() {

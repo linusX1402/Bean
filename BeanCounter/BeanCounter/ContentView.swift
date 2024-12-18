@@ -4,9 +4,6 @@ import UIKit
 struct ContentView: View {
     @ObservedObject var app: ViewModel
     @State var currentTab = 0
-    @Environment(\.scenePhase) private var scenePhase
-    @State private var isPresentingNewScrumView = false
-    let saveAction: ()->Void
     
     func createChildAlertController() {
         let alertController = UIAlertController(title: "New Child", message: "Enter a name for this Child.", preferredStyle: .alert)
@@ -195,28 +192,12 @@ struct ContentView: View {
                 .tag(1)
             }
         .animation(.none, value: currentTab)
-        .onChange(of: scenePhase) {
-            if scenePhase == .inactive || scenePhase == .background {
-                Task {
-                    await app.saveData()
-                }
-            }
-        }
-
         }
     }
 
 
 #Preview {
-    var beanStorage = BeanStorage()
-    var viewModel = ViewModel(beanStorage: beanStorage)
-    var contentView = ContentView(app: viewModel) {
-        Task {
-            await viewModel.saveData()
-        }
-    }
-    .task {
-        await viewModel.loadData()
-    }
+    var viewModel = ViewModel()
+    var contentView = ContentView(app: viewModel)
     return contentView
 }
