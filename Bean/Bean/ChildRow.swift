@@ -37,9 +37,14 @@ struct ChildRow: View {
             }
             .frame(maxWidth: .infinity)
         }
+        if (!child.isRunning) {
+            
+        }
     }
 }
 
 #Preview {
-    
+    var viewModel = ViewModel()
+    var contentView = ContentView(app: viewModel)
+    return contentView
 }

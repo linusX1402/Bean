@@ -9,6 +9,7 @@ struct Child: Codable, Identifiable {
     var isRunning: Bool = false
     var startDate: Date?
     var hasBeenStoppedRecently: Bool = false
+    var hasBeenGoneFor: Int = 0
 }
 
 class ViewModel: ObservableObject {
@@ -103,6 +104,7 @@ class ViewModel: ObservableObject {
     
     func stopTimer(_ index: Int) {
         children[index].isRunning = false
+        children[index].startDate = Date()
         if (children[index].secondsAlreadyPassed > 0) {
             children[index].hasBeenStoppedRecently = true
             persist()
@@ -139,6 +141,9 @@ class ViewModel: ObservableObject {
                 tmpCounter += 1
                 if let timeDifference = children[index].startDate?.timeIntervalSinceNow {
                     var intTimeDifference = Int(timeDifference * -1)
+                    if (!children[index].isRunning) {
+                        children[index].hasBeenGoneFor = Int(timeDifference)
+                    }
                     
                     if (children[index].hasBeenStoppedRecently) {
                         intTimeDifference += children[index].secondsAlreadyPassed

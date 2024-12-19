@@ -55,9 +55,13 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack {
-                HStack {
-                    if (currentTab == 0) {
+        
+        TabView(selection: $currentTab) {
+            
+            //Children
+            VStack {
+                VStack {
+                    HStack {
                         Button(action: deleteChildrenAlertController ) {
                             Image(systemName: "trash")
                                 .font(.title2)
@@ -71,22 +75,16 @@ struct ContentView: View {
                                 .padding(.trailing, 10)
                         }
                     }
+                    HStack {
+                        Text("Bean Counter")
+                            .font(.largeTitle)
+                            .fontWeight(.semibold)
+                            .padding(.bottom, 10)
+                            .padding(.leading, 20)
+                        Spacer()
+                    }
                 }
-            HStack {
-                Text("Bean Counter")
-                    .font(.largeTitle)
-                    .fontWeight(.semibold)
-                    .padding(.bottom, 10)
-                    .padding(.leading, 20)
-                Spacer()
-            }
-        }
-        .padding(.top, 20)
-        
-        TabView(selection: $currentTab) {
-            
-            //Children
-            VStack {
+                .padding(.top, 20)
                     Divider()
                     List {
                         Label("Children", systemImage: "person.2")
@@ -160,7 +158,7 @@ struct ContentView: View {
                 VStack {
                     List {
                         Text("Settings")
-                        .font(.title)
+                            .font(.largeTitle)
                         .fontWeight(.semibold)
                         .padding(.bottom, 10)
                         HStack {
