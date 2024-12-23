@@ -2,3 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: 'OpenSans';
+    src: url("../fonts/open-sans/OpenSans-VariableFont_wdth,wght.ttf");
+    font-style: normal;
+    font-weight: 100 900;
+}
+
+h1 {
+    @apply text-extra-large-title font-open-sans;
+}
+
+h2 {
+    @apply text-extra-large-title2 font-open-sans;
+}
+
+h3 {
+    @apply text-large-title font-open-sans;
+}
+
+h4 {
+    @apply text-title1 font-open-sans;
+}
+
+h5 {
+    @apply text-title2 font-open-sans;
+}
+
+h6 {
+    @apply text-title3 font-open-sans;
+}
+
+p {
+    @apply text-body font-open-sans;
+}
+
+small {
+    @apply text-footnote font-open-sans;
+}

@@ -17,7 +17,7 @@ struct ContentView: View {
                 }
                 .tag(0)
                 
-                //Children
+                //Stats
                 VStack {
                     StatsView(app: app)
                     
@@ -44,5 +44,6 @@ struct ContentView: View {
 #Preview {
     var viewModel = ViewModel()
     var contentView = ContentView(app: viewModel)
+        .environment(\.locale, .init(identifier: "de"))
     return contentView
 }

@@ -41,7 +41,7 @@ struct StatsCard: View {
                 .padding(.vertical, 8)
                 .padding(.horizontal)
                 HStack {
-                    Text("TotalBeans: ")
+                    Text("Total Beans: ")
                     Spacer()
                     Text("\(child.stats.totalBeansPayed)")
                 }

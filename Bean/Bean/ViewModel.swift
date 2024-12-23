@@ -39,6 +39,7 @@ class ViewModel: ObservableObject {
     func updateChildren() {
         for var child in children {
             child.totalBeansToPay = settings.appSettings.startingFunds
+            child.stats.totalBeansPayed = settings.appSettings.startingFunds
         }
     }
     
@@ -133,9 +134,6 @@ class ViewModel: ObservableObject {
         if (children[i].secondsPassedForNextBean > 0) {
             children[i].hasBeenStoppedRecently = true
             save()
-        }
-        if let timeDiff = children[i].lastActionDate?.timeIntervalSinceNow {
-            children[i].stats.totalBeansPayed = Int(timeDiff)
         }
         children[i].payouts.append(Payout (id: UUID() ,payoutTime: Date(), amount: children[i].totalBeansToPay))
         children[i].totalBeansToPay = 0

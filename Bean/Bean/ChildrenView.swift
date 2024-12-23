@@ -12,10 +12,14 @@ struct ChildrenView: View {
     }
     
     func createChildAlertController() {
-        let alertController = UIAlertController(title: "New Child", message: "Enter a name for this Child.", preferredStyle: .alert)
+        let alertController = UIAlertController(
+            title: NSLocalizedString("new_child_title", comment: "Title for new child alert"),
+            message: NSLocalizedString("new_child_message", comment: "Message for new child alert"),
+            preferredStyle: .alert
+        )
 
         alertController.addTextField { textField in
-            textField.placeholder = "Name"
+            textField.placeholder = NSLocalizedString("name_placeholder", comment: "Placeholder for name field")
             textField.autocapitalizationType = .sentences
             NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: .main) { [weak alertController] _ in
                 let text = textField.text ?? ""
@@ -23,8 +27,15 @@ struct ChildrenView: View {
             }
         }
 
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+        let cancelAction = UIAlertAction(
+            title: NSLocalizedString("cancel_button", comment: "Cancel button title"),
+            style: .cancel,
+            handler: nil
+        )
+        let saveAction = UIAlertAction(
+            title: NSLocalizedString("save_button", comment: "Save button title"),
+            style: .default
+        ) { _ in
             if let textField = alertController.textFields?.first, let name = textField.text {
                 app.addChild(name)
             }
@@ -40,13 +51,23 @@ struct ChildrenView: View {
             topController.present(alertController, animated: true, completion: nil)
         }
     }
-    
-    func deleteChildrenAlertController() {
-        let alertController = UIAlertController(title: "Delete All Children", message: "Are you sure you want to deleta all children?", preferredStyle: .alert)
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+    func deleteChildrenAlertController() {
+        let alertController = UIAlertController(
+            title: NSLocalizedString("delete_children_title", comment: "Title for delete children alert"),
+            message: NSLocalizedString("delete_children_message", comment: "Message for delete children alert"),
+            preferredStyle: .alert
+        )
+
+        let cancelAction = UIAlertAction(
+            title: NSLocalizedString("cancel_button", comment: "Cancel button title"),
+            style: .cancel,
+            handler: nil
+        )
+        let deleteAction = UIAlertAction(
+            title: NSLocalizedString("delete_button", comment: "Delete button title"),
+            style: .destructive
+        ) { _ in
             app.deleteAllChildren()
         }
 
@@ -59,6 +80,7 @@ struct ChildrenView: View {
             topController.present(alertController, animated: true, completion: nil)
         }
     }
+
     
     var body: some View {
         VStack {
@@ -173,5 +195,6 @@ struct ChildrenView: View {
 #Preview {
     var viewModel = ViewModel()
     var childrenView =  ChildrenView(app: viewModel)
+        .environment(\.locale, .init(identifier: "de"))
     return childrenView
 }
