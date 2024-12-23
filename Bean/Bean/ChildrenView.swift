@@ -193,8 +193,8 @@ struct ChildrenView: View {
 }
 
 #Preview {
-    var viewModel = ViewModel()
-    var childrenView =  ChildrenView(app: viewModel)
+    let viewModel = ViewModel()
+    let childrenView =  ChildrenView(app: viewModel)
         .environment(\.locale, .init(identifier: "de"))
     return childrenView
 }

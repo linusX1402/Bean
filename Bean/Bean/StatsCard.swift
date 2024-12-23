@@ -53,7 +53,7 @@ struct StatsCard: View {
 }
 
 #Preview {
-    var viewModel = ViewModel()
-    var statsView = StatsView(app: viewModel)
+    let viewModel = ViewModel()
+    let statsView = StatsView(app: viewModel)
     return statsView
 }

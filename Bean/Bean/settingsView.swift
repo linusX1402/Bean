@@ -48,7 +48,7 @@ struct SettingsView: View {
     }
 }
 #Preview {
-    var viewModel = ViewModel()
-    var settingsView = SettingsView(app: viewModel)
+    let viewModel = ViewModel()
+    let settingsView = SettingsView(app: viewModel)
     return settingsView
 }

@@ -66,7 +66,7 @@ struct ChildRow: View {
 }
 
 #Preview {
-    var viewModel = ViewModel()
-    var contentView = ContentView(app: viewModel)
+    let viewModel = ViewModel()
+    let contentView = ContentView(app: viewModel)
     return contentView
 }

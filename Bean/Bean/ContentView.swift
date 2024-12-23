@@ -42,8 +42,8 @@ struct ContentView: View {
 
 
 #Preview {
-    var viewModel = ViewModel()
-    var contentView = ContentView(app: viewModel)
+    let viewModel = ViewModel()
+    let contentView = ContentView(app: viewModel)
         .environment(\.locale, .init(identifier: "de"))
     return contentView
 }

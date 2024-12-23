@@ -12,7 +12,7 @@ function downloadApp() {
     <div class="flex justify-between flex-col">
       <div>
         <h2 class="font-bold">Bean</h2>
-        <p class="text-black/50 font-semibold">
+        <p class="text-black/50 font-medium">
           Track your Beans easily
         </p>
       </div>
@@ -22,14 +22,14 @@ function downloadApp() {
     </div>
   </div>
   <div class="w-screen h-[1px] bg-apple-gray mb-16" />
-  <div class="flex gap-10 overflow-x-scroll pl-10 pr-32 h-full snap-x">
+  <section class="flex gap-10 overflow-x-scroll pl-10 pr-32 h-full snap-x">
     <img alt="App Preview" class="rounded-3xl border-solid border border-apple-gray h-[60vh] mb-10 snap-center"
          src="../assets/images/prev-1.png">
     <img alt="App Preview" class="rounded-3xl border-solid border border-apple-gray h-[60vh] mb-10 snap-center"
          src="../assets/images/prev-2.png">
     <img alt="App Preview" class="rounded-3xl border-solid border border-apple-gray h-[60vh] mb-10 snap-center"
          src="../assets/images/prev-3.png">
-  </div>
+  </section>
 
 </template>
 

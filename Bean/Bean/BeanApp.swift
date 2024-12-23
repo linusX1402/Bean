@@ -3,7 +3,7 @@ import SwiftUI
 @main
 struct BeanCounterApp: App {
     var body: some Scene {
-        var viewModel = ViewModel()
+        let viewModel = ViewModel()
         WindowGroup {
             ContentView(app: viewModel)
         }

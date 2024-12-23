@@ -29,9 +29,22 @@
 		325A020A2D1408D5003E193F /* BeanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		32D751432D19FC2500DEF19C /* Exceptions for "Bean" folder in "Bean" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 325A01EF2D1408D4003E193F /* Bean */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		325A01F22D1408D5003E193F /* Bean */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				32D751432D19FC2500DEF19C /* Exceptions for "Bean" folder in "Bean" target */,
+			);
 			path = Bean;
 			sourceTree = "<group>";
 		};
@@ -384,6 +397,7 @@
 				DEVELOPMENT_TEAM = N92VTFC2K4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bean/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -413,6 +427,7 @@
 				DEVELOPMENT_TEAM = N92VTFC2K4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bean/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

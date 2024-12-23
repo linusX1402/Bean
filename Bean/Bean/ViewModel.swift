@@ -185,7 +185,7 @@ class ViewModel: ObservableObject {
                         timeDiff += Double(children[i].secondsPassedForNextBean)
                         children[i].secondsPassedForNextBean = 0
                     }
-                    if ((timeDiff / Double(settings.appSettings.secondsPerTick)) >= 1) {
+                    if ((timeDiff / Double(settings.appSettings.secondsPerTick * 60)) >= 1) {
                         children[i].totalBeansToPay += settings.appSettings.beansPerTick
                         children[i].stats.totalBeansPayed += settings.appSettings.beansPerTick
                         children[i].secondsPassedForNextBean = 0
