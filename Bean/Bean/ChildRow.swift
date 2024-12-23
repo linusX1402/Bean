@@ -2,7 +2,20 @@ import SwiftUI
 
 struct ChildRow: View {
     var child: Child
-    var app: ViewModel
+    @ObservedObject var app: ViewModel
+    
+    func formatTime(_ seconds: Int) -> String {
+        let hours = seconds / 3600
+        let minutes = (seconds % 3600) / 60
+        let remainingSeconds = seconds % 60
+
+        if hours > 0 {
+            return String(format: "%02d:%02d:%02d", hours, minutes, remainingSeconds)
+        } else {
+            return String(format: "%02d:%02d", minutes, remainingSeconds)
+        }
+    }
+
     
     var body: some View {
         Grid {
@@ -30,16 +43,25 @@ struct ChildRow: View {
                     }
                 }
                 .foregroundStyle(Color.white)
-                Text("\(child.totalBeansToPay) 🫘")
-                    .padding(.leading, 5)
-                    .multilineTextAlignment(.trailing)
-                    .frame(maxWidth: .infinity, alignment: .trailing)
+                if (child.isAtWork) {
+                    Text("\(child.totalBeansToPay) 🫘")
+                        .padding(.leading, 5)
+                        .multilineTextAlignment(.trailing)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                } else {
+                    Text("\(formatTime(child.hasBeenGoneFor))")
+                }
             }
             .frame(maxWidth: .infinity)
         }
-        if (!child.isRunning) {
-            
-        }
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, 5)
+        .padding(.vertical, 3)
+                    .background(!child.isAtWork ? Color.gray.opacity(0.2) : Color.clear)
+                    .cornerRadius(10)
+                    .overlay(
+                        !child.isAtWork ? Color.white.opacity(0.3) : Color.clear
+                    )
     }
 }
 

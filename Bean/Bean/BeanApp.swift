@@ -9,3 +9,4 @@ struct BeanCounterApp: App {
         }
     }
 }
+
