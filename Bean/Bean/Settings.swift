@@ -3,8 +3,7 @@ import Foundation
 struct AppSettings: Codable {
     var secondsPerTick: Int = 5
     var beansPerTick: Int = 1
-    var startingFunds: Int = 5
-}
+    var startingFunds: Int = 5}
 
 public class Settings {
     @Published var appSettings = AppSettings() {

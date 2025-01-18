@@ -189,6 +189,7 @@ struct ChildrenView: View {
             }
             .listStyle(.plain)
             Divider()
+            .padding(.bottom, 15)
     }
 }
 
