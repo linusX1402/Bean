@@ -3,6 +3,9 @@ import SwiftUI
 struct ChildrenView: View {
     @ObservedObject var app: ViewModel
     @State private var lastClicked = 0
+    @State private var isPressing = false
+    @State private var showDeleteAlert = false
+    @State private var selectedChild: Child?
     
     private func setAllTimers(clickedBy: Int, action: () -> Void) {
         if lastClicked == clickedBy {
@@ -79,6 +82,48 @@ struct ChildrenView: View {
            let topController = window.rootViewController {
             topController.present(alertController, animated: true, completion: nil)
         }
+    }
+
+    func renameChild(for child: Child) {
+        let alertController = UIAlertController(
+            title: NSLocalizedString("rename_children_title", comment: "Title for rename children alert"),
+            message: NSLocalizedString("rename_children_message", comment: "Message for rename children alert"),
+            preferredStyle: .alert
+        )
+        
+        let cancelAction = UIAlertAction(
+            title: NSLocalizedString("cancel_button", comment: "Cancel button title"),
+            style: .cancel,
+            handler: nil
+        )
+        let saveAction = UIAlertAction(
+            title: NSLocalizedString("save_button", comment: "Save button title"),
+            style: .default
+        ) { _ in
+            if let textField = alertController.textFields?.first,
+               let inputText = textField.text {
+                print(inputText)
+                print(child)
+                app.renameChild(for: child ,to: inputText)
+            }
+        }
+            
+        let inputField = UITextField()
+        inputField.placeholder = NSLocalizedString("rename_children_placeholder", comment: "Placeholder for rename children alert")
+        inputField.autocapitalizationType = .sentences
+        
+        
+        
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = scene.windows.first,
+           let topController = window.rootViewController {
+            topController.present(alertController, animated: true, completion: nil)
+        }
+        
+        alertController.addTextField()
+        alertController.addAction(saveAction)
+        alertController.addAction(cancelAction)
+            
     }
 
     
@@ -170,6 +215,34 @@ struct ChildrenView: View {
                     .foregroundStyle(Color.secondary)
                 ForEach( app.children, id: \.id) { child in
                     ChildRow(child: child, app: app)
+                        .contextMenu {
+                                    Button {
+                                        app.removeChild(child)
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                            .foregroundColor(.red)
+                                    }
+                                    Button {
+                                        renameChild(for: child)
+                                    } label: {
+                                        Label("Rename", systemImage: "pencil")
+                                    }
+                                    .tint(.blue)
+                                    
+                                    Button {
+                                        app.resetTimer(for: child)
+                                    } label: {
+                                        Label("Reset", systemImage: "arrow.circlepath")
+                                    }
+                                    .tint(.orange)
+                                    Button {
+                                        app.addBean(for: child)
+                                    } label: {
+                                        Label("add_bean", systemImage: "plus")
+                                    }
+                                    .buttonStyle(.bordered)
+                                    .tint(.blue)
+                                }
                         .swipeActions {
                             Button(role: .destructive) {
                                 app.removeChild(child)
@@ -183,6 +256,14 @@ struct ChildrenView: View {
                             } label: {
                                 Image(systemName: "arrow.circlepath")
                                     .tint(Color.orange)
+                            }
+                        }
+                        .swipeActions {
+                            Button {
+                                renameChild(for: child)
+                            } label: {
+                                Image(systemName: "pencil")
+                                    .tint(Color.blue)
                             }
                         }
                 }

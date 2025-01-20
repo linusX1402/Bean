@@ -49,11 +49,11 @@ class ViewModel: ObservableObject {
         startGlobalTimer()
     }
     
+    
     func save() {
         do {
             let data = try JSONEncoder().encode(children)
             userDefault.set(data, forKey: "children")
-            print("Persisted data")
         } catch {
             print("Failed to save Data: \(error)")
         }
@@ -110,11 +110,25 @@ class ViewModel: ObservableObject {
         }
     }
     
+    func addBean(for child: Child) {
+        if let i = children.firstIndex(where: { $0.id == child.id }) {
+            children[i].totalBeansToPay += 1
+            save()
+        }
+    }
+    
     func removeChild(_ child: Child) {
         if let i = children.firstIndex(where: { $0.id == child.id }) {
             children.remove(at: i)
             save()
         }
+    }
+    
+    func renameChild(for child: Child,to newName: String) {
+       if let i = children.firstIndex(where: { $0.id == child.id }) {
+           children[i].name = newName
+           save()
+       }
     }
     
     func startTimer(_ i: Int) {
@@ -133,7 +147,6 @@ class ViewModel: ObservableObject {
         }
         if (children[i].secondsPassedForNextBean > 0) {
             children[i].hasBeenStoppedRecently = true
-            save()
         }
         children[i].payouts.append(Payout (id: UUID() ,payoutTime: Date(), amount: children[i].totalBeansToPay))
         children[i].totalBeansToPay = 0
@@ -195,5 +208,6 @@ class ViewModel: ObservableObject {
                 }
             }
         }
+        save()
     }
 }

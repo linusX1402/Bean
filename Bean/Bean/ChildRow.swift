@@ -43,6 +43,7 @@ struct ChildRow: View {
                     }
                 }
                 .foregroundStyle(Color.white)
+                Spacer()
                 if (child.isAtWork) {
                     Text("\(child.totalBeansToPay) 🫘")
                         .padding(.leading, 5)

@@ -10,6 +10,23 @@
     "%lld 🫘" : {
 
     },
+    "add_bean" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bohne hinzufügen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "add Bean"
+          }
+        }
+      }
+    },
     "Bean" : {
       "localizations" : {
         "de" : {
@@ -184,10 +201,30 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keine Kinder bis jetzt"
+            "value" : "Du hast noch keine Kinder angelegt"
           }
         }
       }
+    },
+    "Rename" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Umbenennen"
+          }
+        }
+      }
+    },
+    "rename_children_message" : {
+      "comment" : "Message for rename children alert"
+    },
+    "rename_children_placeholder" : {
+      "comment" : "Placeholder for rename children alert"
+    },
+    "rename_children_title" : {
+      "comment" : "Title for rename children alert"
     },
     "Reset" : {
       "localizations" : {
@@ -221,7 +258,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ticks (min)"
+            "value" : "Ticks (min)"
           }
         }
       }
@@ -261,7 +298,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Startistiken"
+            "value" : "Statistiken"
           }
         }
       }
