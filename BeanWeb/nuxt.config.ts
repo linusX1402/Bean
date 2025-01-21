@@ -18,7 +18,7 @@ export default defineNuxtConfig({
   icon: {
     customCollections: [
       {
-        prefix: 'bean',
+        prefix: 'bean.txt',
         dir: './assets/icons'
       }
     ]
