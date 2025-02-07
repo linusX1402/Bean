@@ -1,2 +1,2 @@
 # BeanCounter
-An App to. count Beans
+An App to count Beans 🫘

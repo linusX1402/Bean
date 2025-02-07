@@ -10,7 +10,7 @@ struct ContentView: View {
             TabView(selection: $currentTab) {
                 //Children
                 VStack {
-                ChildrenView(app: app)
+                    ChildrenView(app: app)
                 }
                 .tabItem {
                     Label("Children", systemImage: "person.2")
@@ -20,7 +20,6 @@ struct ContentView: View {
                 //Stats
                 VStack {
                     StatsView(app: app)
-                    
                 }
                 .tabItem {
                     Label("Stats", systemImage: "chart.bar")
